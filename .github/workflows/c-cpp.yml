@@ -1,0 +1,45 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Update core index
+        run: arduino-cli core update-index
+
+      - name: Install ESP32 core
+        run: arduino-cli core install esp32:esp32@3.0.0
+
+      - name: Install Arduino AVR core
+        run: arduino-cli core install arduino:avr
+
+      - name: Install required libraries
+        run: |
+          arduino-cli lib install "U8g2"
+          arduino-cli lib install "MFRC522"
+
+      - name: Compile ESP32-C6 sketch
+        run: |
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32c6 \
+            --verbose \
+            esp32c6_seleste_os
+
+      - name: Compile Arduino Uno sketch
+        run: |
+          arduino-cli compile \
+            --fqbn arduino:avr:uno \
+            --verbose \
+            uno_access_node
