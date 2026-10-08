@@ -37,7 +37,7 @@ Built by **Seleste Technologies** on an Arduino Uno and an ESP32-C6.
 
 ## Overview
 
-Seleste Access OS splits one access-control system across two boards, each doing what it is best at:
+ Access OS splits one access-control system across two boards, each doing what it is best at:
 
 | Board | Role | Responsibilities |
 |---|---|---|
