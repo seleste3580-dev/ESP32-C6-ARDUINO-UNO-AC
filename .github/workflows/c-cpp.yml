@@ -2,9 +2,9 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -35,11 +35,11 @@ jobs:
           arduino-cli compile \
             --fqbn esp32:esp32:esp32c6 \
             --verbose \
-            esp32c6_seleste_os
+            ./esp32c6_seleste_os
 
       - name: Compile Arduino Uno sketch
         run: |
           arduino-cli compile \
             --fqbn arduino:avr:uno \
             --verbose \
-            uno_access_node
+            ./uno_access_node.ino
